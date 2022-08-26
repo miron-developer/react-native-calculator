@@ -302,7 +302,6 @@ export default function App() {
   const [history, setHistory] = useState(null);
   const [result, setResult] = useState(0);
   const [prepared, setPrepared] = useState(false);
-  const [activeElem, setActiveElem] = useState(null);
 
   const bottomBtns = useMemo(() => {
     let res = [...Digits];
@@ -410,38 +409,6 @@ export default function App() {
     setPrepared(true);
   }, []);
 
-  // disable btns when active by type
-  // useEffect(() => {
-  //   setPrepared(false);
-
-  //   MathActions.forEach((_, i) => {
-  //     MathActions[i].disabled = false;
-  //   });
-  //   Actions.forEach((_, i) => {
-  //     Actions[i].disabled = false;
-  //   });
-  //   Digits.forEach((_, i) => {
-  //     Digits[i].disabled = false;
-  //   });
-
-  //   if (activeElem?.type === TYPE_DIGIT || activeElem?.type === TYPE_NUMBER) {
-  //     MathActions.forEach((_, i) => {
-  //       MathActions[i].disabled = true;
-  //     });
-  //     Actions.forEach((_, i) => {
-  //       Actions[i].disabled = true;
-  //     });
-  //   } else if (activeElem?.type === TYPE_ACTION) {
-  //     Digits.forEach((_, i) => {
-  //       Digits[i].disabled = true;
-  //     });
-  //   }
-
-  //   setTimeout(() => {
-  //     setPrepared(true);
-  //   }, 10);
-  // }, [activeElem]);
-
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
@@ -453,8 +420,6 @@ export default function App() {
               <DisplayItem
                 style={displayStyles.history_text}
                 key={RandomId()}
-                activeElem={activeElem}
-                setActiveElem={setActiveElem}
                 {...h}
               />
             ))}
